@@ -32,9 +32,13 @@ tail -n+2 output/master_comparison_table.csv | awk 'BEGIN{FS=OFS=","}{if($22=="T
 ## Make list of perfect matching markers
 tail -n+2 output/master_comparison_table.csv | awk 'BEGIN{FS=OFS=","}{if($8=="strict")print $3}' > strict_match.lst
 cut -f3 $HOME/Equine80select_remapper/results/matchingSNPs_binary_consistantMapping.equCab3_map > remapped_QC.lst
+cut -f2 $HOME/genDiv/filtered/USTA_Diversity_Study.remap.refAlleles.dedup.plink1.filtered.bim > filtered.lst
+
 wc -l *.lst
+   # 58106 filtered.lst     === This is the old filtered list. We need to rerun genDiv after the final remapping
    # 79669 remapped_QC.lst
    # 79970 strict_match.lst
 comm -12 <(sort remapped_QC.lst) <(sort strict_match.lst) | wc -l ## 79258
+comm -12 <(sort filtered.lst) <(sort strict_match.lst) | wc -l ## 57739
 
 
