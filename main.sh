@@ -41,4 +41,8 @@ wc -l *.lst
 comm -12 <(sort remapped_QC.lst) <(sort strict_match.lst) | wc -l ## 79258
 comm -12 <(sort filtered.lst) <(sort strict_match.lst) | wc -l ## 57744 (i.e., 85 conflicting markers)
 
+# Assess conflicting markers in the filtered dataset
+comm -23 <(sort filtered.lst) <(sort strict_match.lst) > conflicting.lst 
+cat conflicting.lst | grep -Fwf - output/master_comparison_table.csv  > conflicting_master_table.csv
+cat conflicting_master_table.csv | cut -d"," -f14 | sort | uniq -c
 
