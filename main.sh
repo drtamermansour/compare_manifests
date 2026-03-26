@@ -35,10 +35,10 @@ cut -f3 $HOME/Equine80select_remapper/results/matchingSNPs_binary_consistantMapp
 cut -f2 $HOME/genDiv/filtered/USTA_Diversity_Study.remap.refAlleles.dedup.plink1.filtered.bim > filtered.lst
 
 wc -l *.lst
-   # 58106 filtered.lst     === This is the old filtered list. We need to rerun genDiv after the final remapping
+   # 57829 filtered.lst
    # 79669 remapped_QC.lst
    # 79970 strict_match.lst
 comm -12 <(sort remapped_QC.lst) <(sort strict_match.lst) | wc -l ## 79258
-comm -12 <(sort filtered.lst) <(sort strict_match.lst) | wc -l ## 57739
+comm -12 <(sort filtered.lst) <(sort strict_match.lst) | wc -l ## 57744 (i.e., 85 conflicting markers)
 
 
